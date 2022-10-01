@@ -27,6 +27,7 @@
     "@solana/wallet-adapter-wallets": "^0.16.1",
     "@solana/web3.js": "^1.41.4",
     "@strata-foundation/spl-utils": "^3.5.7",
+    "@supercharge/promise-pool": "^2.3.2",
     "autoprefixer": "^10.4.7",
     "next": "^12.3.1",
     "postcss": "^8.4.13",

@@ -16,7 +16,7 @@ export type FanoutData = {
 
 export const useFanoutData = () => {
   const { connection } = useEnvironmentCtx()
-  const { data: fanoutId } = useFanoutId()
+  const fanoutId  = new PublicKey(useFanoutId() as string)
   const wallet = useWallet()
   const fanoutSdk = new FanoutClient(connection, asWallet(wallet!))
 

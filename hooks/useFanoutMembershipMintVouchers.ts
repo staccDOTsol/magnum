@@ -17,7 +17,7 @@ export const useFanoutMembershipMintVouchers = (
   fanoutMintId?: string | null
 ) => {
   const { connection } = useEnvironmentCtx()
-  const { data: fanoutId } = useFanoutId()
+  const fanoutId = new PublicKey(useFanoutId())
   return useDataHook<AccountData<FanoutMembershipMintVoucher>[]>(
     async () => {
       if (!fanoutId || !fanoutMintId || !tryPublicKey(fanoutMintId)) return

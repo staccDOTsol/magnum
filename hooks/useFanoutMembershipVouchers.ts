@@ -14,7 +14,7 @@ const HYDRA_PROGRAM_ID = new PublicKey(
 
 export const useFanoutMembershipVouchers = () => {
   const { connection } = useEnvironmentCtx()
-  const { data: fanoutId } = useFanoutId()
+  const fanoutId = new PublicKey(useFanoutId())
   return useDataHook<AccountData<FanoutMembershipVoucher>[]>(
     async () => {
       if (!fanoutId) return

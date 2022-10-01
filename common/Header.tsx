@@ -37,7 +37,7 @@ export const Header = () => {
             )
           }
         >
-          Stacc Hydra UI
+          Magnum
         </div>
         {ctx.environment.label !== 'mainnet-beta' && (
           <div className="cursor-pointer rounded-md bg-[#9945ff] p-1 text-[10px] italic text-white">
@@ -47,21 +47,7 @@ export const Header = () => {
       </div>
 
       <div className="relative my-auto flex items-center pr-8 align-middle">
-        <div className="relative my-auto flex items-center align-middle text-gray-700 font-bold uppercase tracking-wide">
-          <div
-            onClick={() =>
-              router.push(
-                `/create${
-                  ctx.environment.label !== 'mainnet-beta'
-                    ? `?cluster=${ctx.environment.label}`
-                    : ''
-                }`
-              )
-            }
-          >
-            <p className="my-auto mr-10 hover:cursor-pointer">Create</p>
-          </div>
-        </div>
+        
         {wallet.connected && wallet.publicKey ? (
           <AccountConnect
             connection={ctx.connection}

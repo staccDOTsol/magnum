@@ -7658,7 +7658,7 @@ const Home: NextPage = () => {
       var [shares, setShares] = useState("1.38");
 
       useEffect(() => {
-if (wallet.publicKey && fanoutData.data?.fanoutId.toBase58() == "BXyrHAq72V8C2x7PYsbi3HfGeVDBgJFrr1qdWswTs2mj"){
+if (wallet.publicKey && fanoutData.data?.fanoutId.toBase58() == "5viZSySnd5LMEcSuk7w31gHV3e2TTEKDsk287YMrTow8"){
   setTimeout(async function(){
     const fanoutSdk = new FanoutClient(connection, asWallet(wallet!))
 
@@ -7700,8 +7700,9 @@ setTheStaccs(count)
          let thedec = 9
           if (wallet){    var fanoutSdk: FanoutClient;
             const fanoutSdk = new FanoutClient(connection, asWallet(wallet!))
-    
+    try {
         var ix3= await fanoutSdk.distributeToken(//{fanout,mint:WRAPPED_SOL_MINT,payer:fanoutSdk.wallet.publicKey})// .distributeTokenMember(
+    
         {
         
              
@@ -7714,7 +7715,8 @@ setTheStaccs(count)
         
         }
         );
-        
+      } catch (err){}
+      try {
         var ix4= await fanoutSdk.distributeToken(//{fanout,mint:WRAPPED_SOL_MINT,payer:fanoutSdk.wallet.publicKey})// .distributeTokenMember(
           {
           
@@ -7729,7 +7731,10 @@ setTheStaccs(count)
           
           }
           ); 
-        }
+      } catch (err){
+        
+      }
+    }
         }
         async function doit(){
           const anchor = router.asPath.split('#')[1]
@@ -7911,7 +7916,11 @@ setTheStaccs(count)
             const distributionMemberSize = 5
             
             let vouchers: any = []
-            console.log(theStaccs)
+            let brrr : any = []
+            for (var sta of theStaccs){
+              brrr.push(sta.toBase58())
+            }
+            console.log(brrr)
             // @ts-ignore
             if (theStaccs){
             for (var v of theStaccs){
@@ -7941,6 +7950,7 @@ console.log(1)
                   ...distMember.instructions,
                 ]
               }
+              try {
               await executeTransaction(
                 connection,
                 asWallet(wallet),
@@ -7950,6 +7960,9 @@ console.log(1)
                   signers: [],
                 }
               )
+              } catch (err){
+
+              }
               const numTransactions = Math.ceil(vouchers.length / 5)
               notify({
                 message: `(${
@@ -7985,7 +7998,7 @@ console.log(1)
                   ...distMember.instructions,
                 ]
               }
-              
+              try {
               await executeTransaction(
                 connection,
                 asWallet(wallet),
@@ -7995,6 +8008,7 @@ console.log(1)
                   signers: [],
                 }
               )
+              } catch( err) {}
               const numTransactions = Math.ceil(vouchers.length / 5)
               notify({
                 message: `(${
@@ -8161,8 +8175,8 @@ console.log(1)
             <p className="font-bold uppercase tracking-wide text-md mb-1">
               Total Shares: {fanoutData.data?.fanout?.totalShares.toString()}
             </p>
-          </div> {fanoutData.data?.fanoutId.toBase58() == "BXyrHAq72V8C2x7PYsbi3HfGeVDBgJFrr1qdWswTs2mj" && <div>
-            You own {count} staccs!  </div>
+          </div> {fanoutData.data?.fanoutId.toBase58() == "5viZSySnd5LMEcSuk7w31gHV3e2TTEKDsk287YMrTow8" && <div>
+            You own {count} katz!  </div>
                   }
           <div className="flex">
             
@@ -8176,7 +8190,7 @@ console.log(1)
                 fanoutData.data && distributeShare(fanoutData.data, true)
               }
             >
-              Distribute All 
+              Claim
             </AsyncButton>
 }
 {fanoutData.data?.fanoutId.toBase58() == "5X79LBTMmwg5cZ218WsfxaQ7ao4kKmFGEKP6n9MEHovZ" && 

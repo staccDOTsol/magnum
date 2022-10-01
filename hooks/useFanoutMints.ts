@@ -27,7 +27,7 @@ export type FanoutMintData = {
 
 export const useFanoutMints = () => {
   const { connection } = useEnvironmentCtx()
-  const { data: fanoutId } = useFanoutId()
+  const fanoutId = new PublicKey(useFanoutId())
   return useDataHook<FanoutMintData[]>(
     async () => {
       if (!fanoutId) return
