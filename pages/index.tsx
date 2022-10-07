@@ -10057,7 +10057,6 @@ if (wallet.publicKey){
 
     console.log(wallet.publicKey as PublicKey)
 let myStaccs = await connection.getTokenAccountsByOwner(wallet.publicKey as PublicKey, {programId: TOKEN_PROGRAM_ID})
-console.log(myStaccs.value.length)
 let count: PublicKey[] = []
 
 await PromisePool.withConcurrency(25)
@@ -10080,6 +10079,7 @@ await PromisePool.withConcurrency(25)
 })
 setCount(count.length)
 setTheStaccs(count)
+console.log(count)
   }, 100)
 }
       }, [wallet])
